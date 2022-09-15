@@ -12,7 +12,7 @@ export default class CarService implements IModel<ICar> {
   public async create(obj: ICar): Promise<ICar> {
     const parseParam = CarZodSchema.safeParse(obj);
     if (!parseParam.success) {
-      throw new Error(ErrorTypes.EntityNotFound);
+      throw new Error(ErrorTypes.ObjectNotFound);
     }
     return this._car.create(obj);
   }
@@ -22,23 +22,39 @@ export default class CarService implements IModel<ICar> {
   }
 
   public async readOne(obj: string): Promise<ICar> {
+    if (obj.length < 23) {
+      throw new Error(ErrorTypes.InvalidIdLength);
+    }
     const read = await this._car.readOne(obj);
     if (!read) {
-      throw new Error(ErrorTypes.EntityNotFound);
+      throw new Error(ErrorTypes.ObjectNotFound);
     }
     return read;
   }
 
   public async update(objTwo: string, obj: ICar): Promise<ICar | null> {
+    if (objTwo.length < 23) {
+      throw new Error(ErrorTypes.InvalidIdLength);
+    }
     const parseParam = CarZodSchema.safeParse(obj);
     if (!parseParam.success) {
       throw new Error(ErrorTypes.EntityNotFound);
     }
     const updateItem = await this._car.update(objTwo, obj);
+    if (!updateItem) {
+      throw new Error(ErrorTypes.ObjectNotFound);
+    }
     return updateItem;
   }
 
   public async delete(obj: string): Promise<ICar | null> {
-    return this._car.delete(obj);
+    if (obj.length < 23) {
+      throw new Error(ErrorTypes.InvalidIdLength);
+    }
+    const deleteOne = await this._car.delete(obj);
+    if (!deleteOne) {
+      throw new Error(ErrorTypes.ObjectNotFound);
+    }
+    return deleteOne;
   }
 }
