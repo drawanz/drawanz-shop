@@ -10,7 +10,8 @@ const carMongooseSchema = new Schema<ICar>({
   buyValue: Number,
   doorsQty: Number,
   seatsQty: Number,
-});
+}, { versionKey: false });
+// https://stackoverflow.com/questions/36689536/how-to-resolve-hostname-to-an-ip-address-in-node-js
 
 export default class CarModel extends MongoModel<ICar> {
   constructor(model = mongooseCreateModel('Car', carMongooseSchema)) {
