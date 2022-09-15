@@ -12,7 +12,7 @@ export default class CarService implements IModel<ICar> {
   public async create(obj: ICar): Promise<ICar> {
     const parseParam = CarZodSchema.safeParse(obj);
     if (!parseParam.success) {
-      throw new Error(ErrorTypes.ObjectNotFound);
+      throw parseParam.error;
     }
     return this._car.create(obj);
   }
@@ -38,7 +38,7 @@ export default class CarService implements IModel<ICar> {
     }
     const parseParam = CarZodSchema.safeParse(obj);
     if (!parseParam.success) {
-      throw new Error(ErrorTypes.EntityNotFound);
+      throw parseParam.error;
     }
     const updateItem = await this._car.update(objTwo, obj);
     if (!updateItem) {
