@@ -15,7 +15,7 @@ export default class CarController {
     return res.status(HttpStatusCodes.CREATED).json(create);
   }
 
-  public async read(req: Request, res: Response) {
+  public async read(res: Response) {
     const read = await this._service.read();
     return res.status(HttpStatusCodes.OK).json(read);
   }
