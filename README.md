@@ -1,6 +1,6 @@
 # Projeto Car Shop
 
-O projeto tem como objetivo desenvolver uma API C.R.U.D para uma loja de carros. A aplicação foi desenvolvida utilizando o Typescript como linguagem principal e o Mongoose para acessar o banco de dados (MongoDb).
+O projeto tem como objetivo desenvolver uma API C.R.U.D para uma loja de carros. A aplicação foi desenvolvida utilizando o Typescript como linguagem principal e o Mongoose para acessar o banco de dados (MongoDB).
 
 ## Como rodar o projeto
   - Clone este repositório;
