@@ -2,3 +2,9 @@ node_modules
 coverage
 .nyc_output
 .env
+__tests__
+.github
+.trybe
+public
+trybe.yml
+READMEcopy.md
